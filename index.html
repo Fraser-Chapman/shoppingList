@@ -8,6 +8,10 @@
 </head>
 <body>
 
+    <ul id = "groceries">
+
+    </ul>
+
     <form method = "post" id = "addGroceryForm">
 
         <input id = "groceryInput" type = "text" placeholder = "New grocery">
@@ -16,15 +20,26 @@
     </form>
 
     <script type = "text/javascript">
-    var groceries = []
-    document.querySelector('#addGroceryForm').addEventListener('submit', addGrocery)
-    function addGrocery (event) {
-        event.preventDefault()
+    var groceries = [];
+    document.querySelector('#addGroceryForm').addEventListener('submit', addGrocery);
 
-        var groceryInput = document.querySelector('#groceryInput')
-        groceries.push(groceryInput.value)
-        groceryInput.value = ''
-        console.log(groceries)
+    function addGrocery (event) {
+        event.preventDefault();
+
+        var groceryInput = document.querySelector('#groceryInput');
+        groceries.push(groceryInput.value);
+        groceryInput.value = '';
+        updateGroceries();
+    }
+
+    function updateGroceries() {
+        var groceriesElement = document.querySelector('#groceries');
+        groceriesElement.innerHTML = '';
+
+        for (var currentIndex = 0; currentIndex < groceries.length; currentIndex++){
+            var grocery = groceries[currentIndex];
+            groceriesElement.innerHTML += '<li>' + grocery + '</li>';
+        }
     }
 
     </script>
